@@ -1,0 +1,19 @@
+---
+- name: Update SSH Port in sshd_config 
+  hosts: "{{variable_hosts | default('practise')}}"
+  vars:
+    newport: 10022
+  tasks:
+    - ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?Port'
+        line: 'Port {{newport}}'
+        backup: yes
+      notify:
+        - Restart SSH
+
+  handlers:
+    - name: Restart SSH
+      ansible.builtin.service:
+        name: sshd
+        state: restarted

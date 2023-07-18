@@ -1,0 +1,14 @@
+---
+- name: Install packages (mc, htop, atop, ncdu)
+  hosts: "{{variable_hosts | default('practise')}}"
+  tasks:
+    - ansible.builtin.apt:
+        name:
+          - mc
+          - htop
+          - atop
+          - ncdu
+        state: present
+        update_cache: true
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
