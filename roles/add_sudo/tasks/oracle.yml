@@ -1,0 +1,6 @@
+---
+- name: Oracle Linux user adder
+  ansible.builtin.user:
+    name: "{{ username }}"
+    groups: wheel
+    append: yes

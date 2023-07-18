@@ -1,5 +1,5 @@
 - name: My Playbook
-  hosts: "{{variable_hosts | default('practise')}}"
+  hosts: practise
 
   roles:
     - role: update_programs
@@ -9,6 +9,8 @@
     - role: add_sudo
       tags: sudo
     - role: ssh_work
-      tags: newssh
+      tags: ssh_port
     - role: install_smth
       tags: installer 
+    - role: add_ssh
+      tags: uploadSSH

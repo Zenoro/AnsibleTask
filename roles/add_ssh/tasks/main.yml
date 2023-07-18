@@ -1,0 +1,8 @@
+---
+- name: Add public SSH key 
+  ansible.builtin.authorized_key:
+    user: "{{username}}"
+    key: "{{ ssh_key }}"
+    state: present
+    manage_dir: yes
+

@@ -1,0 +1,10 @@
+---
+- name: Update SSH Port in sshd_config
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?Port'
+    line: 'Port {{newport}}'
+    backup: yes
+  notify:
+    - Restart SSH
+

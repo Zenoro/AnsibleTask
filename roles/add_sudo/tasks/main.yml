@@ -1,0 +1,9 @@
+---
+- name: Add the user to the sudo group for Debian/Ubuntu
+  import_tasks: debian.yml
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    
+- name: Add the user to the sudo group for Oracle Linux
+  import_tasks: oracle.yml
+  when: ansible_distribution == 'OracleLinux'
+

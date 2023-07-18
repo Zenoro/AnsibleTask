@@ -1,0 +1,6 @@
+---
+- name: Oracle Linux updater
+  ansible.builtin.yum:
+    name: '*'
+    state: latest
+    update_only: false

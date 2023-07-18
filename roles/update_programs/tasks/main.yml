@@ -1,0 +1,9 @@
+---
+- name: Upgrade all packets for Debian/Ubuntu 
+  import_tasks: debian.yml
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  
+- name: Upgrade all packets for OracleLinux
+  import_tasks: oracle.yml
+  when: ansible_distribution == 'OracleLinux'
+

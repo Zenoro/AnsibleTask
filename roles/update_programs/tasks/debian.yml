@@ -1,0 +1,5 @@
+---
+- name: Debian updater
+  ansible.builtin.apt:
+    name: '*'
+    state: latest

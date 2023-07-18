@@ -1,0 +1,6 @@
+---
+- name: Debian/Ubuntu user adder
+  ansible.builtin.user:
+    name: "{{ username }}"
+    groups: sudo
+    append: yes
