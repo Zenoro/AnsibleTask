@@ -1,0 +1,21 @@
+---
+- name: Install Nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: true
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Copy Nginx configuration file
+  copy:
+    src: "{{conf_name}}"
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Restart Nginx service
+  service:
+    name: nginx
+    state: restarted
+
