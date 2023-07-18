@@ -1,18 +1,16 @@
 ---
 - name: Add the user to the sudo group
-  hosts: "{{variable_hosts | default('practise')}}"
   vars:
     username: "newuser"
-  tasks:
-    - ansible.builtin.user:
-        name: "{{ username }}"
-        groups: sudo
-        append: yes
-      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  ansible.builtin.user:
+    name: "{{ username }}"
+    groups: sudo
+    append: yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
     
-    - ansible.builtin.user:
-        name: "{{ username }}"
-        groups: wheel
-        append: yes
-      when: ansible_distribution == 'OracleLinux'
+  ansible.builtin.user:
+    name: "{{ username }}"
+    groups: wheel
+    append: yes
+  when: ansible_distribution == 'OracleLinux'
 

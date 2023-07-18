@@ -1,17 +1,13 @@
 ---
 - name: Create new user 
-  hosts: "{{variable_hosts | default('practise')}}"
   vars:
     my_password: "QazWsx321"
     username: "newuser"
-
-  tasks:
-    - ansible.builtin.user:
-        name: "{{username}}"
-        password: "{{my_password}}"
-        state: present
-        create_home: yes
-        home: "/home/{{username}}"
-        shell: /bin/bash
-        groups: sudo
+  ansible.builtin.user:
+    name: "{{username}}"
+    password: "{{my_password}}"
+    state: present
+    create_home: yes
+    home: "/home/{{username}}"
+    shell: /bin/bash
     
