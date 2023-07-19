@@ -9,7 +9,20 @@
 - name: Copy Nginx configuration file
   copy:
     src: "{{conf_name}}"
-    dest: /etc/nginx/nginx.conf
+    dest: /etc/nginx/conf.d/new.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Create directory
+  file:
+    path: /var/www/website
+    state: directory
+
+- name: Add index.html
+  copy:
+    src: "{{index_file}}"
+    dest: /var/www/website/index.html
     owner: root
     group: root
     mode: "0644"
