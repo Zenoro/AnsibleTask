@@ -1,2 +1,3 @@
 conf_name: "my-site.conf"
 index_file: "index.html"
+webdirname: "website"

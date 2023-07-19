@@ -16,13 +16,13 @@
 
 - name: Create directory
   file:
-    path: /var/www/website
+    path: /var/www/{{webdirname}}
     state: directory
 
 - name: Add index.html
   copy:
     src: "{{index_file}}"
-    dest: /var/www/website/index.html
+    dest: /var/www/{{webdirname}}/index.html
     owner: root
     group: root
     mode: "0644"
