@@ -1,0 +1,19 @@
+---
+- name: Install Debian/Ubuntu Version
+  ansible.builtin.apt:
+    name: nginx
+    state: latest
+    update_cache: true
+
+- name: Update nginx conf
+  ansible.builtin.lineinfile:
+    path: /etc/nginx/sites-available/default
+    regexp: '^listen [::]:80 default_server;'
+    line: '# listen [::]:80 default_server;'
+    state: present
+
+# - name: Reinstall nginx
+#   ansible.builtin.apt:
+#     name: nginx
+#     state: present
+#     update_cache: true
