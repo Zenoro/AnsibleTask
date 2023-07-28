@@ -1,10 +1,16 @@
 ---
-- name: Install Nginx
-  ansible.builtin.apt:
+- name: Install Nginx on OracleLinux
+  ansible.builtin.yum:
     name: nginx
+    state: latest
+  when: ansible_distribution == "OracleLinux"
+
+- name: Update nginx conf
+  ansible.builtin.lineinfile:
+    path: /etc/nginx/sites-available/default
+    regexp: '^listen [::]:80 default_server;'
+    line: '# listen [::]:80 default_server;'
     state: present
-    update_cache: true
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Copy Nginx configuration file
   copy:
