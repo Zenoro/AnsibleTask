@@ -5,6 +5,8 @@
     regexp: '^#?Port'
     line: 'Port {{newport}}'
     backup: yes
-  notify:
-    - Restart SSH
 
+- name: Restart SSH
+  ansible.builtin.service:
+    name: sshd
+    state: restarted
