@@ -4,16 +4,16 @@
     name: nginx
     state: latest
     update_cache: true
+  ignore_errors: yes
 
 - name: Update nginx conf
   ansible.builtin.lineinfile:
     path: /etc/nginx/sites-available/default
-    regexp: '^listen [::]:80 default_server;'
-    line: '# listen [::]:80 default_server;'
-    state: present
+    regexp: 'listen \[::\]:80 default_server;'
+    line: '#\1'
 
-# - name: Reinstall nginx
-#   ansible.builtin.apt:
-#     name: nginx
-#     state: present
-#     update_cache: true
+- name: Reinstall nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: true
