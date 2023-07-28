@@ -1,0 +1,25 @@
+---
+- name: Install EPEL repository
+  ansible.builtin.dnf:
+    name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
+    state: present
+
+- name: Install mc
+  ansible.builtin.dnf:
+    name: mc
+    state: latest
+
+- name: Install atop
+  ansible.builtin.dnf:
+    name: atop
+    state: latest
+
+- name: Install htop
+  ansible.builtin.dnf:
+    name: htop
+    state: latest
+
+- name: Install ncdu
+  ansible.builtin.dnf:
+    name: ncdu
+    state: latest

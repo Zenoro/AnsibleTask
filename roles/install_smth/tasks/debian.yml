@@ -1,0 +1,10 @@
+---
+- name: Install packages (mc, htop, atop, ncdu)
+  ansible.builtin.apt:
+    name:
+      - mc
+      - htop
+      - atop
+      - ncdu
+    state: present
+    update_cache: true

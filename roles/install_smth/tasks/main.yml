@@ -1,11 +1,9 @@
 ---
-- name: Install packages (mc, htop, atop, ncdu)
-  ansible.builtin.apt:
-    name:
-      - mc
-      - htop
-      - atop
-      - ncdu
-    state: present
-    update_cache: true
+- name: Install packages for Debian/Ubuntu
+  import_tasks: debian.yml
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Install packages for OEL
+  import_tasks: oracle.yml
+  when: ansible_distribution == 'OracleLinux'
+  
