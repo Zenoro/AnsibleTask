@@ -1,0 +1,16 @@
+---
+- name: Install Nginx on OracleLinux
+  ansible.builtin.yum:
+    name: nginx
+    state: latest
+
+- name: Update nginx conf
+  ansible.builtin.lineinfile:
+    path: /etc/nginx/nginx.conf
+    regexp: '^\s*listen\s*\[::\]:80;'
+    line: '#\1'
+
+- name: Reinstall Nginx
+  ansible.builtin.yum:
+    name: nginx
+    state: latest

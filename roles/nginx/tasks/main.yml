@@ -1,16 +1,11 @@
 ---
-- name: Install Nginx on OracleLinux
-  ansible.builtin.yum:
-    name: nginx
-    state: latest
-  when: ansible_distribution == "OracleLinux"
+- name: Install Nginx for Debian
+  import_tasks: debian.yml
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
-- name: Update nginx conf
-  ansible.builtin.lineinfile:
-    path: /etc/nginx/sites-available/default
-    regexp: '^listen [::]:80 default_server;'
-    line: '# listen [::]:80 default_server;'
-    state: present
+- name: Install Nginx for OracleLinux
+  import_tasks: oracle.yml
+  when: ansible_distribution == "OracleLinux"
 
 - name: Copy Nginx configuration file
   copy:
@@ -34,7 +29,6 @@
     mode: "0644"
 
 - name: Restart Nginx service
-  service:
-    name: nginx
-    state: restarted
+  shell:
+    cmd: systemctl restart nginx
 
